@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bstc.dao.CompanyInfoDao">
+  
+  <select id="getCompanyInfoById"  parameterType="String" resultType="com.bstc.bean.CompanyBean" >
+    select * from cominfo where id=${id} 
+  </select>
+  
+  <select id="getCompanyInfoByIdOrName"  parameterType="String" resultType="com.bstc.bean.CompanyBean" >
+    select * from cominfo
+    <where>
+    	 <if test="companyName!= null">
+  			and companyName like "%"#{companyName}"%" <!--   like "%"#{companyName}"%" -->
+ 		 </if>
+  		 <if test="id!= null">
+  			and id=#{id} 
+ 		 </if>
+     
+    </where>
+    limit #{pageNumFirstDataLocation},#{pageSize}
+  </select>
+  
+   <select id="getCountCompany"   resultType="int" >
+    select count(*) from cominfo 
+     <where>
+    	 <if test="companyName!= null">
+  			and companyName like "%"#{companyName}"%" <!--   like "%"#{companyName}"%" -->
+ 		 </if>
+  		 <if test="id!= null">
+  			and id=#{id} 
+ 		 </if>
+     
+    </where>
+  </select>
+  
+  <select id="getPerson" resultType="com.bstc.bean.Person">
+     select * from person where id=1
+  </select>
+   
+</mapper>
