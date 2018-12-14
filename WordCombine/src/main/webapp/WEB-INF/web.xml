@@ -1,0 +1,59 @@
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Archetype Created Web Application</display-name>
+
+	<!--2、springmvc的前端控制器，拦截所有请求  -->
+	<!-- The front controller of this Spring Web application, responsible for handling all application requests -->
+	<servlet>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map all requests to the DispatcherServlet for handling -->
+	<servlet-mapping>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/assets/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+   
+     <servlet>
+        <servlet-name>ConnectorServlet</servlet-name>
+        <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+        <init-param>
+            <description>
+                Path to configuration file can be relative path inside application,
+                absolute path on local file system or UNC path.
+            </description>
+            <param-name>XMLConfig</param-name>
+            <param-value>/WEB-INF/ckfinder.xml</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConnectorServlet</servlet-name>
+        <url-pattern>
+            /assets/ckfinder/core/connector/java/connector.java
+        </url-pattern>
+    </servlet-mapping>
+	
+</web-app>
